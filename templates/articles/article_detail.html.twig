@@ -5,11 +5,11 @@
 		var get_comment_url = "{{ path('loadComments', $article_id) }}";
 	</script>
 	{% if enable_edit %}
-		<link rel="stylesheet" href="{% static "css/easymde.css"%}">
-		<link rel="stylesheet" href="{% static "css/editor_dark.css"%}">
+		<link rel="stylesheet" href="{{ path("css/easymde.css") }}">
+		<link rel="stylesheet" href="{{ path("css/editor_dark.css") }}">
 		<script>
-			var save_image_url = "{% url 'saveImage' article_id %}";
-			var save_article_url = "{% url 'saveArticle' article_id %}";
+			var save_image_url = "{{ path('saveImage', $article_id) }}";
+			var save_article_url = "{{ path('saveArticle', article_id) %}";
 			var publicate_article_url = "{% url 'publicateArticle' article_id %}";
 			var unpublicate_article_url = "{% url 'unpublicateArticle' article_id %}";
 			var save_image_preview_url = "{% url 'saveImagePreview' article_id %}"

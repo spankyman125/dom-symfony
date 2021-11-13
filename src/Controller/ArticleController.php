@@ -14,8 +14,13 @@ class ArticleController extends AbstractController
 	/**
 	 * @Route("/{id}", name = "_detail")
 	 */
-	public function detail() : Response
+	public function detail($id) : Response
 	{
-		return $this->render('this.html.twig');
+		return $this->render(
+			'this.html.twig',
+			[
+				'page_title' => 'Some title',
+			 	'id' => $id
+			]);
 	}
 }
