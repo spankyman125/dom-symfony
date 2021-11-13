@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <article>
+   <audio src="{% static "mp3/song.mp3" %}" type="audio/mp3" controls="controls"></audio>
+   <audio src="{% static "mp3/song2.mp3" %}" type="audio/mp3" controls="controls"></audio>
+      <hr>
+      <h1>О сайте</h1>
+      <hr>
+      <p>Группа: АВТ-810
+      <p>Выполнил: Степаненко В.А.
+      <p>Тема: Document Object Model
+      <pre>
+
+▓█████▄  █████  ███   ██ 
+▒██▀ ██▌ ▓  ██▒ ▒███████
+░██   █▌ █▒ ▓█░ ▒███ ███
+░▓█▄   ▌ █░ ▓█  ░▓█   ██
+░▒████▓  █████  ▒██   ██
+ ▒▒▓  ▒   ▒ ░░  ▒▒    ▒░
+ ░ ▒  ▒     ░     ░   ░
+ ░ ░  ░   ░     ░ ░    ░ 
+   ░░
+ ░    
+      </pre>
+  </article>
+{% endblock %}

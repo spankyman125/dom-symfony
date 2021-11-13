@@ -1,19 +1,60 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block title %}
+      <title>{{ page_title }}</title>
+    {% endblock %}
+
+    <script src="{{ asset('js/theme.js') }}"></script>
+
+    {% if user.is_authenticated %}
+      <script src="{{ asset('js/logoutForm.js') }}"></script>
+    {% else %}
+      <script src="{{ asset('js/loginForm.js') }}"></script>
+    {% endif %}
+    
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+        <div><img src="{{ asset('/images/logo.png') }}"></div>
+        <div><a href="{{ path('browse') }}">Main</a></div>
+        <div><a href="{{ path('about') }}">About</a></div>
+      {% if app.user %}
+        <div><a href="{# user.author.get_absolute_url #}}">{# user.get_username #}</a></div>
+        <form method="post" action="{{ path('accounts:logout') }}">
+          <input type="submit" value="Выйти" />
+        </form>
+      {% else %}
+        <button type="button" id="open-login-form" onclick="openForm()">Войти</button>
+        <div class="form-popup" id="loginForm">
+          <form method="post" action="{{ path('accounts:login') }}">
+            <div>
+              <p>Войти</p>
+              <label for="username"><b>Имя</b></label>
+              <input type="text" name="username" placeholder="Имя" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="username">
+              <label for="password"><b>Пароль</b></label>
+              <input type="password" name="password" placeholder="Пароль" autocomplete="current-password" required id="id_password"></td>
+              {# <input hidden id="pw2" type="password" placeholder="Повторите пароль" required> #}
+              <input type="submit" value="login" />
+              <button type="button" onclick="closeForm()">Отмена</button>
+              <!-- <button id="showRegDialog" onclick="showRegDialog()">Регистрация</button>  -->
+              <!-- <button id="closeRegDialog" onclick="closeRegDialog()" hidden >Авторизация</button>  -->
+            </div>
+          </form>
+        </div>
+      {% endif %}
+      {# <div><input id="changeTheme" type="image" src="{% static '/images/dark.png'%}" onclick="changeTheme()"></div> #}
+    </header>
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+      <footer>
+      </footer>
+    {% endblock %}
+  </body>
 </html>

@@ -1,0 +1,35 @@
+.CodeMirror {
+  color: var(--font-color-main);
+  border-color: var(--border-color);
+  background-color: inherit;
+}
+.CodeMirror .editor-toolbar > * {
+  color: var(--font-color-main);
+}
+.CodeMirror .editor-toolbar > .active, .CodeMirror .editor-toolbar > button:hover, .CodeMirror .editor-preview pre, .CodeMirror .cm-s-easymde .cm-comment {
+  background-color: var(--background-color-article);
+}
+.CodeMirror .editor-preview {
+  background-color: var(--background-color-article);
+}
+
+.editor-toolbar.fullscreen {
+  background-color: var(--background-color-article);
+}
+
+.EasyMDEContainer .CodeMirror-fullscreen {
+  background-color: var(--background-color-article);
+}
+
+.editor-preview {
+  background-color: var(--background-color-article);
+}
+.editor-preview pre {
+  background-color: var(--background-color-article);
+}
+
+.cm-s-easymde .CodeMirror-cursor {
+  border-color: var(--font-color-main);
+}
+
+/*# sourceMappingURL=editor_dark.css.map */

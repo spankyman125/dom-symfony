@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+	<script src="{{ asset('js/easymde.js') }}"></script>
+	<script>
+		var get_comment_url = "{{ path('loadComments', $article_id) }}";
+	</script>
+	{% if enable_edit %}
+		<link rel="stylesheet" href="{% static "css/easymde.css"%}">
+		<link rel="stylesheet" href="{% static "css/editor_dark.css"%}">
+		<script>
+			var save_image_url = "{% url 'saveImage' article_id %}";
+			var save_article_url = "{% url 'saveArticle' article_id %}";
+			var publicate_article_url = "{% url 'publicateArticle' article_id %}";
+			var unpublicate_article_url = "{% url 'unpublicateArticle' article_id %}";
+			var save_image_preview_url = "{% url 'saveImagePreview' article_id %}"
+			var csrf_token="{{ csrf_token }}";
+			var article_is_publicated={{ article_is_publicated |yesno:"true,false" }}
+		</script>
+		<script src="{% static 'js/editor.js' %}"></script>
+	{% else %}
+		<script src="{% static 'js/viewer.js' %}"></script>
+	{% endif %}
+	<script src="{% static 'js/navbar.js' %}"></script>
+	<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
+{% block content %}
+	<nav id="nav">
+		<!-- navbar.js -->
+	</nav>
+	<article id="article">
+		<div id="article_header">
+			<hr>
+			<p class = "article_title" id='article_title'>{{ article_title }}</p>
+			<hr>
+			<p>Author: {{ article_author.name }}</p>
+			<span>{{ article_creation_date }}</span>
+			<span>{{ article_update_date }}</span>
+			{% if enable_edit %}
+				{% if article_is_publicated %}
+					<button type="button" onclick="location.href='{% url "unpublicateArticle" article_id %}'">Unpublicate</button>
+				{% else %}
+					<button type="button" onclick="location.href='{% url "publicateArticle" article_id %}'">Publicate</button>
+				{% endif %}
+			{% endif %}
+		</div>
+		<div id="article_preview">
+			<hr>
+			<div id="description">
+				{{ article_preview_description }}
+			</div>
+			<img id="preview_image" src="{{ article_preview_image }}">
+		</div>
+		<div id="article_content">
+			<textarea id="article_markdown" type="hidden">{{ article_markdown }}</textarea>
+			<div id="article_html"></div>
+		</div>
+	</article>
+	<div id="comments">
+		<!-- comments.js -->
+	</div>
+{% endblock %}

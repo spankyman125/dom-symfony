@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+	<title>All authors</title>
+{% endblock %}
+
+{% block content %}
+	<h1>Authors</h1>
+	{% if author_list %}
+		<ul>
+		{% for author in author_list %}
+			<li>
+				<a href="{{ author.get_absolute_url }}">{{ author.name }}</a>
+				<p>Register date: {{ author.register_date }}</p>
+				<p>Reputation: {{ author.reputation }}</p>
+			</li>
+			<hr>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>Can't load authors</p>
+	{% endif %}
+{% endblock %}
